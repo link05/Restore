@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,7 +29,9 @@ namespace API.Entities
 
         public void RemoveItem(int ProductId, int Quantity)
         {
-            var item = Items.FirstOrDefault(x=> x.Id == ProductId);
+            Console.WriteLine("productId in removeItem!!"+ProductId);
+
+            var item = Items.FirstOrDefault(x=> x.ProductId == ProductId);
             if(item == null)return;
             item.Quantity -= Quantity;
             if(item.Quantity == 0) Items.Remove(item);
