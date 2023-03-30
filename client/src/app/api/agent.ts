@@ -1,8 +1,11 @@
 import { BreakfastDiningOutlined } from "@mui/icons-material";
 import { breadcrumbsClasses } from "@mui/material";
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { resolve } from "path";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
+
+const sleep = () => new Promise(resolve => setTimeout(resolve,500));
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -13,7 +16,8 @@ const responseBody = (response: AxiosResponse) => response.data;
 //     return response;
 // }
 
-axios.interceptors.response.use(response => {
+axios.interceptors.response.use(async response => {
+    await sleep();
     return response;
 }, (error:AxiosError) =>
 {
