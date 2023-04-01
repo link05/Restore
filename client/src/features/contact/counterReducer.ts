@@ -1,3 +1,5 @@
+export const INCREMENT_COUNTER ="INCREMENT_COUNTER";
+export const DECREMENT_COUNTER = "DECREMENT_COUNTER";
 
 export interface CounterState {
     data: number;
@@ -10,5 +12,19 @@ const initialState: CounterState = {
 }
 
 export default function CounterReducer(state = initialState, action:any) {
-    return state;
+    switch (action.type) {
+        case INCREMENT_COUNTER:
+            return {
+                    ...state,
+                    data:state.data + 1
+                }
+
+        case DECREMENT_COUNTER:
+            return {
+                    ...state,
+                    data:state.data - 1
+                }
+        default:
+            return state;
+    }
 }
